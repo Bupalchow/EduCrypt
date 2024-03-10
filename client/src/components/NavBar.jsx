@@ -5,10 +5,16 @@ import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import Home from '../Pages/Home';
 import About from '../Pages/About';
 import NotFound from '../Pages/NotFound';
+import Learn from '../Pages/Learn';
+import Submit from '../Pages/Submit';
+import Redeem from '../Pages/Redeem';
 
 const navigation = [
   { name: 'Home', path: '/', },
   { name: 'About', path: '/about', },
+  { name: 'Learn', path: '/learn', },
+  { name: 'Submit', path: '/submit', },
+  { name: 'Redeem', path: '/redeem', },
 ];
 
 function classNames(...classes) {
@@ -20,11 +26,14 @@ export default function NavBar() {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-800">
+      <Disclosure as="nav" >
         {({ open }) => (
           <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8">
               <div className="relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 right-0 flex items-center mr-[350px] sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-extrabold text-3xl">
+                <h1>EduCrypt</h1>
+              </div>
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="absolute -inset-0.5" />
@@ -91,7 +100,10 @@ export default function NavBar() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/learn" element={<Learn />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/redeem" element={<Redeem />} />
       </Routes>
       </>
   );
