@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {getStorage} from "firebase/storage";
+import {getDatabase} from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyDOMY7jPJVKMLZqHMn1V7beH5OgQz0nAMI",
   authDomain: "playground-db20b.firebaseapp.com",
@@ -10,4 +11,5 @@ const firebaseConfig = {
   appId: "1:15769246362:web:b98df416f2841e4b2f1d23"
 };
 const app = initializeApp(firebaseConfig);
+export const base = getDatabase(app);
 export const storage = getStorage(app);
