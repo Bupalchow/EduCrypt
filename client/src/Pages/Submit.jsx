@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react'
 import { base } from '../firebase';
 import{ref as textRef,push, get,set} from "firebase/database";
 import {Button,Dialog,Card,CardBody,CardFooter,Typography,Input,DialogHeader,DialogBody,DialogFooter} from "@material-tailwind/react";
-
+import { Claim1Token , Claim5Token } from '../components/Claim';
 const Submit = () => {
   const [users, setUsers] = useState({});
   const [open, setOpen] = useState(false);
@@ -14,6 +14,8 @@ const Submit = () => {
   const [reviewData,setReviewData]=useState('');
   const[review,setReview]=useState({});
   const handleOpen = () => setOpen((cur) => !cur);
+  const isButtonDisabled = !description || !name || !ytlink;
+  const isReviewButtonDisabled = !reviewData;
   const uploadImage =()=>{
     if(name=='' || description=='' || ytlink==''){
       alert('fill all required fields');
@@ -38,6 +40,7 @@ const Submit = () => {
       set(userReviewRef, {
         review: reviewData
       });
+      setReviewData('');
     }
   useEffect(() => {
     const fetchUsers = async () => {
@@ -57,7 +60,7 @@ const Submit = () => {
   return (
     <div>
       <div className='flex items-center justify-center '>
-        <Button className='bg-white text-black' onClick={handleOpen}>Submit</Button>
+        <Button className='bg-white text-black px-3' onClick={handleOpen}>Submit</Button>
       </div>
       <Dialog
         size="xs"
@@ -95,8 +98,8 @@ const Submit = () => {
             <Input label="YT Link" type='text' size="lg"  required onChange={event=>setYtlink(event.target.value)}/>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" className='bg-black' onClick={uploadImage}  fullWidth>
-              SUbmit
+            <Button variant="gradient" className='bg-black' onClick={uploadImage}  fullWidth disabled={isButtonDisabled}>
+              <Claim5Token/>
             </Button>
           </CardFooter>
         </Card>
@@ -121,13 +124,15 @@ const Submit = () => {
                 Review about this project
               </Typography>
               <Input label="Review"  type='text' required onChange={event=>setReviewData(event.target.value)}/>
-              <div className='flex gap-10'>
+              <div className='flex gap-10 mb-5'>
                 <Button variant='gradient' className='bg-black mt-3' onClick={()=>getReview(user.name)}>Get Review</Button>
-                <Button variant="gradient" className='bg-black mt-3' onClick={()=>uploadReview(user.name)} >submit</Button>
+                <Button variant="gradient" className='bg-black mt-3' onClick={()=>uploadReview(user.name)} disabled={isReviewButtonDisabled} ><Claim1Token/></Button>
               </div>
-              {Object.values(review).map((rev)=>{
-                return <p>{rev.review}</p>
-              })}
+              <div className='bg-white text-black w-96 rounded-xl p-3 mb-10' style={{ background: 'rgba(255, 255, 255, 0.20)', backdropFilter: 'blur(3px)' }} >
+                {Object.values(review).map((rev)=>{
+                  return <p>✨{rev.review}</p>
+                })}
+              </div>
             </div>
             </div>
           );

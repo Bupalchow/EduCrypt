@@ -7,14 +7,13 @@ import About from '../Pages/About';
 import NotFound from '../Pages/NotFound';
 import Learn from '../Pages/Learn';
 import Submit from '../Pages/Submit';
-import Redeem from '../Pages/Redeem';
+import ViewBalance from './View';
 
 const navigation = [
   { name: 'Home', path: '/', },
-  { name: 'About', path: '/about', },
   { name: 'Learn', path: '/learn', },
+  { name: 'About', path: '/about', },
   { name: 'Submit', path: '/submit', },
-  { name: 'Redeem', path: '/redeem', },
 ];
 
 function classNames(...classes) {
@@ -68,6 +67,7 @@ export default function NavBar() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <ViewBalance/>
                   <ConnectButton />
                 </div>
               </div>
@@ -103,7 +103,6 @@ export default function NavBar() {
         <Route path="/learn" element={<Learn />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/submit" element={<Submit />} />
-        <Route path="/redeem" element={<Redeem />} />
       </Routes>
       </>
   );

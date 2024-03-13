@@ -3,14 +3,14 @@ import './CSS/global.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets, lightTheme,  RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { confluxESpace ,confluxESpaceTestnet } from 'wagmi/chains';
+import { confluxESpaceTestnet } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
 const { chains, publicClient } = configureChains(
-  [ confluxESpace,confluxESpaceTestnet],
+  [ confluxESpaceTestnet],
   [publicProvider()]
 );
 
