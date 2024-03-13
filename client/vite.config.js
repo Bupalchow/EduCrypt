@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   build: {
     target: 'es2020',
+  },rollupOptions: {
+    external: ['ethers'],
   },
   plugins: [react()],
 });
