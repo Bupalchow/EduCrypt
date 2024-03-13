@@ -1,22 +1,22 @@
 import './polyfills';
 import './CSS/global.css';
 import '@rainbow-me/rainbowkit/styles.css';
-import { darkTheme, getDefaultWallets, lightTheme, midnightTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { getDefaultWallets, lightTheme,  RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { confluxESpace } from 'wagmi/chains';
+import { confluxESpace ,confluxESpaceTestnet } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
 const { chains, publicClient } = configureChains(
-  [ confluxESpace],
+  [ confluxESpace,confluxESpaceTestnet],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit demo',
-  projectId: 'YOUR_PROJECT_ID',
+  appName: 'EDUCRYPT',
+  projectId: 'educrypt',
   chains,
 });
 
