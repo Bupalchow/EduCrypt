@@ -1,43 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
-import abi from '../contract.json'; 
+import Web3 from 'web3';
+import abi from '../contract.json';
 
 const ViewBalance = () => {
-    const [provider, setProvider] = useState(null);
-    const [signer, setSigner] = useState(null);
-    const [address, setAddress] = useState('');
-    const [balance, setBalance] = useState('');
+  const [web3, setWeb3] = useState(null);
+  const [account, setAccount] = useState('');
+  const [balance, setBalance] = useState('');
 
-    useEffect(() => {
-        if (window.ethereum) {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            setProvider(provider);
-            const signer = provider.getSigner();
-            setSigner(signer);
-            setAddress(window.ethereum.selectedAddress);
-        } else {
-            console.log('Please install MetaMask!');
-        }
-    }, []);
+  useEffect(() => {
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      setWeb3(web3);
+      window.ethereum.request({ method: 'eth_requestAccounts' })
+        .then((accounts) => setAccount(accounts[0]))
+        .catch((error) => console.error(error));
+    } else {
+      console.log('Please install MetaMask!');
+    }
+  }, []);
 
-    const callViewFunction = async () => {
-        if (provider && signer && address) {
-            const contract = new ethers.Contract('0xEfAcb047Adf3036E42cb70C7ADff977B4F56D61F', abi, signer);
-            const result = await contract.balanceOf(address);
-            const balance = ethers.utils.formatEther(result);
-            setBalance(balance);
-        }
-    };
+  const callViewFunction = async () => {
+    if (web3 && account) {
+      const contract = new web3.eth.Contract(abi, '0xEfAcb047Adf3036E42cb70C7ADff977B4F56D61F');
+      const result = await contract.methods.balanceOf(account).call();
+      const balance = web3.utils.fromWei(result, 'ether');
+      setBalance(balance);
+    }
+  };
 
-    useEffect(() => {
-        callViewFunction();
-    }, [provider, signer, address]);
+  useEffect(() => {
+    callViewFunction();
+  }, [web3, account]);
 
-    return (
-        <div className='bg-white text-black py-2 px-5 mr-6 rounded-xl' onClick={callViewFunction}>
-            {balance}ECR
-        </div>
-    );
+  return (
+    <div className='bg-white text-black py-2 px-5 mr-6 rounded-xl' onClick={callViewFunction}>
+      {balance} ECR
+    </div>
+  );
 };
 
 export default ViewBalance;
