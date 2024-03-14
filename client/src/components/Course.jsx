@@ -7,7 +7,6 @@ import {
     Button,
   } from "@material-tailwind/react";
   import { BuyCourse } from "./Buy";
-import { Claim5Token } from "./Claim";
    
   export function CourseCard() {
     const CourseList=[
@@ -54,7 +53,6 @@ import { Claim5Token } from "./Claim";
         </CardFooter>
       </Card>
       ))}
-      <Claim5Token/>
       </div>
     );
   }

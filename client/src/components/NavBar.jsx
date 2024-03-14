@@ -8,12 +8,14 @@ import NotFound from '../Pages/NotFound';
 import Learn from '../Pages/Learn';
 import Submit from '../Pages/Submit';
 import ViewBalance from './View';
+import { ClaimToken } from '../Pages/Faucet';
 
 const navigation = [
   { name: 'Home', path: '/', },
   { name: 'Learn', path: '/learn', },
-  { name: 'About', path: '/about', },
   { name: 'Submit', path: '/submit', },
+  { name: 'About', path: '/about', },
+  {name:'Faucet',path:'/faucet'}
 ];
 
 function classNames(...classes) {
@@ -103,6 +105,7 @@ export default function NavBar() {
         <Route path="/learn" element={<Learn />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/submit" element={<Submit />} />
+        <Route path='/faucet' element={<ClaimToken/>}/>
       </Routes>
       </>
   );

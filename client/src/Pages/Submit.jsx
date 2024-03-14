@@ -115,7 +115,7 @@ const Submit = () => {
             <div key={user.description} >
             <h1 className='text-3xl font-bold text-center my-5'>{user.name}</h1>
             <div id="videocontainer" className='flex items-center justify-center flex-wrap'>
-            <iframe width="640" height="360" className='rounded my-5' src={`//www.youtube.com/embed/${getVideoId(user.ytlink)}`} allowFullScreen></iframe>
+            <iframe width="640" height="360" className='rounded my-5  lg: w-{640px} lg:h-{360 px}' src={`//www.youtube.com/embed/${getVideoId(user.ytlink)}`} allowFullScreen></iframe>
             </div>
             <div id='TextContainer' className='flex flex-col items-center align-middle'>
               <p className='font-semibold text-xl'>{user.description}</p>

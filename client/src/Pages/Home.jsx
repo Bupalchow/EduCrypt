@@ -9,7 +9,7 @@ export default function Home() {
             <h3 className='opacity-100'>A Place to learn, build and grow in web3</h3>
           </div>
         </div>
-        <div className='absolute left-[55%] top-60 z-0 '>
+        <div className='absolute left-[55%] top-60 z-0 hidden lg:block '>
           <Hero />
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function Home() {
           <div id="boxtwo" >
             <div className='px-3 py-5  rounded-lg' style={{ background: 'rgba(255, 255, 255, 0.20)', backdropFilter: 'blur(3px)' }}>
                 <h1 className='opacity-100 pb-5'>PEER TO PEER LEARNING</h1>
-                <p>The newest and most sophisticated <br />platform from AI to educate people</p>
+                <p>Improve your project with <br />the help of valuable peer reviews</p>
             </div>  
           </div>
         </div>

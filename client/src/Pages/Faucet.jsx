@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import abi from '../contract.json'; 
+import abi from '../contract.json';
+import {Button} from "@material-tailwind/react";
 
-export const BuyCourse = ({link}) => {
+export const ClaimToken = () => {
     const [provider, setProvider] = useState(null);
     const [signer, setSigner] = useState(null);
 
@@ -19,17 +20,16 @@ export const BuyCourse = ({link}) => {
     const callContractFunction = async () => {
         if (provider && signer) {
             const contract = new ethers.Contract('0xEfAcb047Adf3036E42cb70C7ADff977B4F56D61F', abi, signer);
-            await contract.decreaseBalance();
-            window.open(link, '_blank')
-        }else{
-            alert('insufficent funds')
+            await contract.claim5Token();
         }
-        
     };
 
     return (
-        <button onClick={callContractFunction}>
-            Buy This Course
-        </button>
+        <div className='flex flex-col justify-center items-center mt-20'>
+        <img src='https://101blockchains.com/wp-content/uploads/2022/09/Crypto-Faucets-150x150.png' className='w-80 h-80'/>
+        <Button onClick={callContractFunction} className='flex items-center justify-center'>
+            Get Tokens
+        </Button>
+        </div>
     );
 };
