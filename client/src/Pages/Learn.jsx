@@ -3,7 +3,7 @@ import { GoogleGenerativeAI,HarmCategory,HarmBlockThreshold} from "@google/gener
 import { CourseCard } from "../components/Course";
 function Learn() {
 const MODEL_NAME = "gemini-1.0-pro-001";
-const API_KEY = "AIzaSyAvG3L9jIHuxDjfDuRNblRrnP5vAcnlC1Y";
+const API_KEY = "";
 
 async function Run(Input) {
   const genAI = new GoogleGenerativeAI(API_KEY);
